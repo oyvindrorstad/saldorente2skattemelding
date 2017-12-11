@@ -4,16 +4,16 @@
         <partsnummer>100022234</partsnummer>
         <organisasjonsnummer>999888766</organisasjonsnummer>
         <internasjonalIdentifikator>
-            <identifikator>a</identifikator>
+            <identifikator>abc</identifikator>
             <identifikatortype>GIIN</identifikatortype>
-            <utstedtAvLand>String</utstedtAvLand>
+            <utstedtAvLand>NO</utstedtAvLand>
         </internasjonalIdentifikator>
-        <organisasjonsnavn>String</organisasjonsnavn>
+        <organisasjonsnavn>Banken AS</organisasjonsnavn>
     </oppgavegiver>
     <oppgaveeier>
-        <partsnummer>String</partsnummer>
+        <partsnummer>12345678</partsnummer>
         <organisasjonsnummer>999999999</organisasjonsnummer>
-        <organisasjonsnavn>String</organisasjonsnavn>
+        <organisasjonsnavn>Kunden Per</organisasjonsnavn>
         <alternativIdentifikator>a</alternativIdentifikator>
         <internasjonalIdentifikator>
             <identifikator>a</identifikator>
@@ -46,20 +46,20 @@
     </oppgaveeier>
     <inntektsaar>2017</inntektsaar>
     <presentasjonsnavn>String</presentasjonsnavn>
-    <kontonummer>a</kontonummer>
+    <kontonummer>98765432123</kontonummer>
     <avsluttetKonto>true</avsluttetKonto>
     <udokumentertKonto>true</udokumentertKonto>
     <skattekontoEgnethet>0</skattekontoEgnethet>
-    <utlaan>0</utlaan>
-    <innskudd>0</innskudd>
+    <utlaan>111</utlaan>
+    <innskudd>222</innskudd>
     <renter>
-        <opptjenteRenter>0</opptjenteRenter>
-        <paaloepteRenter>0</paaloepteRenter>
-        <betalteMisligholdteRenter>0</betalteMisligholdteRenter>
-        <tilbakebetalteMisligholdteRenter>0</tilbakebetalteMisligholdteRenter>
+        <opptjenteRenter>333</opptjenteRenter>
+        <paaloepteRenter>4444</paaloepteRenter>
+        <betalteMisligholdteRenter>5555</betalteMisligholdteRenter>
+        <tilbakebetalteMisligholdteRenter>6666</tilbakebetalteMisligholdteRenter>
     </renter>
     <kontotype>innskuddskontoINok</kontotype>
-    <valutakode>AAA</valutakode>
+    <valutakode>NO</valutakode>
     <gevinstEllerTap>
         <skattepliktigGevinst>0</skattepliktigGevinst>
     </gevinstEllerTap>
