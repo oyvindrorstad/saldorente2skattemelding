@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <oppgave>
     <oppgavegiver>
-        <partsnummer>String</partsnummer>
-        <organisasjonsnummer>String</organisasjonsnummer>
+        <partsnummer>100022234</partsnummer>
+        <organisasjonsnummer>999888766</organisasjonsnummer>
         <internasjonalIdentifikator>
             <identifikator>a</identifikator>
             <identifikatortype>GIIN</identifikatortype>
@@ -12,7 +12,7 @@
     </oppgavegiver>
     <oppgaveeier>
         <partsnummer>String</partsnummer>
-        <organisasjonsnummer>String</organisasjonsnummer>
+        <organisasjonsnummer>999999999</organisasjonsnummer>
         <organisasjonsnavn>String</organisasjonsnavn>
         <alternativIdentifikator>a</alternativIdentifikator>
         <internasjonalIdentifikator>
@@ -44,7 +44,7 @@
             <mottakerland>String</mottakerland>
         </internasjonalRapportering>
     </oppgaveeier>
-    <inntektsaar>2012</inntektsaar>
+    <inntektsaar>2017</inntektsaar>
     <presentasjonsnavn>String</presentasjonsnavn>
     <kontonummer>a</kontonummer>
     <avsluttetKonto>true</avsluttetKonto>
@@ -72,7 +72,7 @@
         <internasjonalIdentifikator>
             <identifikator>a</identifikator>
             <identifikatortype>TIN</identifikatortype>
-            <utstedtAvLand>String</utstedtAvLand>
+            <utstedtAvLand>NO</utstedtAvLand>
         </internasjonalIdentifikator>
         <adresse>
             <landkode>String</landkode>
