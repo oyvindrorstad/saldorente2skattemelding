@@ -1,0 +1,12 @@
+/skatteinfoDokument/data/content/oppgave/oppgavegiver/organisasjonsnavn = /skattemelding/bankOgLaan/bank/konto/bankensNavn
+/skatteinfoDokument/data/content/oppgave/kontonummer = /skattemelding/bankOgLaan/bank/konto/kontonummer
+/skatteinfoDokument/data/content/oppgave/Innskudd = /skattemelding/bankOgLaan/bank/konto/innskudd/beloep
+/skatteinfoDokument/data/content/oppgave/renter/opptjenteRenter = /skattemelding/bankOgLaan/bank/konto/opptjenteRenter/beloep
+/skatteinfoDokument/data/content/oppgave/renter/tilbakebetalteMisligholdteRenter = /skattemelding/bankOgLaan/bank/konto/tilbakefoerteRenter/beloep
+/skatteinfoDokument/data/content/oppgave/gevinstEllerTap/skattepliktigGevinst = /skattemelding/bankOgLaan/bank/konto/valutalaan/gevinstValutalaan/beloep 
+/skatteinfoDokument/data/content/oppgave/renter/paaloepteRenter/beloep =  /skattemelding/bankOgLaan/bank/konto/paaloepteRenter/beloep
+/skatteinfoDokument/data/content/oppgave/renter/betalteMisligholdteRenter = /skattemelding/bankOgLaan/bank/konto/betalteMisligholdteRenter /beloep
+/skatteinfoDokument/data/content/oppgave/renter/paaloepteRenter/beloep = /skattemelding/bankOgLaan/bank/konto/betalteForsinkelsrenter/beloep
+/skatteinfoDokument/data/content/oppgave/gevinstEllerTap/fradragsberettigetTap = /skattemelding/bankOgLaan/bank/konto/valutalaan/tapValutalaan/beloep
+/skatteinfoDokument/data/content/oppgave/utlaan = /skattemelding/bankOgLaan/bank/konto/gjeld/beloep 
+/skatteinfoDokument/data/content/oppgave/utlaan = /skattemelding/bankOgLaan/bank/konto/skyldigRestskatt/beloep
