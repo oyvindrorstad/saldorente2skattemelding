@@ -7,6 +7,10 @@
       </list>
     </option>
   </component>
+  <component name="ProjectResources">
+    <resource url="urn:ske:fastsetting:formueinntekt:skattemelding:v6.2" location="$PROJECT_DIR$/src/main/resources/Skattemelding_ver_6_2.xsd" />
+    <resource url="urn:ske:fastsetting:skatteinfo:saldoRente:v3" location="$PROJECT_DIR$/src/main/resources/saldoRente_v3_0.xsd" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

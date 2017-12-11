@@ -1,0 +1,1657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="urn:ske:fastsetting:formueinntekt:skattemelding:v6.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:ske:fastsetting:formueinntekt:skattemelding:v6.2">
+    <xsd:annotation>
+        <xsd:documentation>
+            <xsd:attribute fixed="2017-10-27T12:47:33.422+0200" name="generertDato"/>
+            <xsd:attribute fixed="6.2" name="versjon"/>
+            <xsd:attribute fixed="" name="beskrivelse"/>
+            <xsd:attribute fixed="Skattemelding ver 6" name="modellnavn"/>
+            <xsd:attribute fixed="urn:ske:fastsetting:formueinntekt:skattemelding:v6.2" name="navnerom"/>
+            <xsd:attribute fixed="true" name="begrepsreferanse"/>
+            <xsd:attribute fixed="false" name="dokumentasjon"/>
+            <xsd:attribute fixed="false" name="nillable"/>
+            <xsd:attribute fixed="false" name="modellelement"/>
+        </xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="melding" type="Skattemelding"/>
+    <xsd:complexType name="Skattemelding" skatt:begrepsreferanse="http://begrepskatalog/begrep/6b41c6c5-50cd-11e7-b7c5-005056821322">
+        <xsd:sequence>
+            <xsd:element name="partsreferanse" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52adb-9fe1-11e5-a9f8-e4115b280940" type="Tekst"/>
+            <xsd:element name="inntektsaar" skatt:begrepsreferanse="http://begrepskatalog.skead.no/begrep/20b52b1c-9fe1-11e5-a9f8-e4115b280940" type="Aarstall"/>
+            <xsd:element minOccurs="0" name="tidsPeriode" type="Periode"/>
+            <xsd:element minOccurs="0" name="sistEndret" type="Dato"/>
+            <xsd:element minOccurs="0" name="bankOgLaan" type="BankOgLaan"/>
+            <xsd:element minOccurs="0" name="boligOgEiendeler" type="BoligOgEiendeler"/>
+            <xsd:element minOccurs="0" name="arbeidTrygdOgPensjon" type="ArbeidTrygdOgPensjon"/>
+            <xsd:element minOccurs="0" name="skatteplikt" type="Skatteplikt"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="aksjerOgAndreVerdipapirer" skatt:begrepsreferanse="http://begrepskatalog/begrep/410ade95-9202-11e6-8b61-82ab1fa1f30b" type="AksjerOgAndreVerdipapirer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Tekst" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52af3-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Aarstall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e14a-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:gYear"/>
+    </xsd:simpleType>
+    <xsd:complexType name="Periode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b6d-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="start" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b6f-9fe1-11e5-a9f8-e4115b280940" type="DatoKlokkeslett"/>
+            <xsd:element minOccurs="0" name="slutt" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b6e-9fe1-11e5-a9f8-e4115b280940" type="DatoKlokkeslett"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Dato" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aed-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:complexType name="BankOgLaan">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="bank" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e333074-6837-11e6-a7ce-fac03dffe1d7" type="Bank"/>
+            <xsd:element minOccurs="0" name="privateLaan" type="PrivateLaan"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoligOgEiendeler">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="borettslagOgSameie" type="BorettslagOgSameie"/>
+            <xsd:element minOccurs="0" name="eiendeler" type="Eiendeler"/>
+            <xsd:element minOccurs="0" name="fasteEiendommer" type="FasteEiendommer"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArbeidTrygdOgPensjon">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="loennOgTilsvarendeYtelser" type="LoennOgTilsvarendeYtelser"/>
+            <xsd:element minOccurs="0" name="fradrag" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4737-e484-11e6-9cb3-005056821322" type="Fradrag"/>
+            <xsd:element minOccurs="0" name="pensjonsinntekter" type="Pensjonsinntekter"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Skatteplikt" skatt:begrepsreferanse="http://begrepskatalog/begrep/d67e064e-6dcf-11e6-be2b-ba992a0501a6">
+        <xsd:sequence>
+            <xsd:element name="skattepliktTilNorge" type="SkattepliktstypeMedEndringsmetadata"/>
+            <xsd:element name="skattested" skatt:begrepsreferanse="http://begrepskatalog/begrep/ce8ec1ba-70e6-11e6-acbe-e635f0461918" type="KommunenummerMedEndringsmetadata"/>
+            <xsd:element name="alderIInntektsaar" type="HeltallMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="skattemessigBostedEtterSkatteavtale" type="SkattemessigBostedEtterSkatteavtale"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Endringsmetadata">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="tilstand" type="Tilstand"/>
+            <xsd:element minOccurs="0" name="opphav" type="Opphav"/>
+            <xsd:element name="endringstidspunkt" type="DatoKlokkeslett"/>
+            <xsd:element name="brukeridentifikator" skatt:begrepsreferanse="http://begrepskatalog/begrep/df81b854-3474-11e6-af6b-9614a8212dd3 " type="Brukeridentifikator"/>
+            <xsd:element minOccurs="0" name="kildedokumentreferanse" type="Kildedokumentreferanse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AksjerOgAndreVerdipapirer" skatt:begrepsreferanse="http://begrepskatalog/begrep/410ade95-9202-11e6-8b61-82ab1fa1f30b">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="andreFradrag" type="AndreFradrag"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="DatoKlokkeslett" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aee-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>
+    <xsd:complexType name="Bank" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e333074-6837-11e6-a7ce-fac03dffe1d7">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="konto" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e326-9fe1-11e5-a9f8-e4115b280940" type="Konto"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrivateLaan">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="privateFordringer" type="PrivateFordringer"/>
+            <xsd:element minOccurs="0" name="privateGjeldsforhold" type="PrivateGjeldsforhold"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BorettslagOgSameie">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="boligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e16d-9fe1-11e5-a9f8-e4115b280940" type="Boligsameie"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="boligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e17b-9fe1-11e5-a9f8-e4115b280940" type="Boligselskap"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Eiendeler">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="kontantbeloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e333098-6837-11e6-a7ce-fac03dffe1d7" type="Kontantbeloep"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="motorkjoeretoey" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408e0-d96a-11e6-8d9b-005056821322" type="Motorkjoeretoey"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="campingvogn" skatt:begrepsreferanse="http://begrepskatalog/begrep/410ab749-9202-11e6-8b61-82ab1fa1f30b" type="Campingvogn"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FasteEiendommer">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="fastEiendom" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd0b-2964-11e6-b2bc-96405985e0fa" type="FastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LoennOgTilsvarendeYtelser" skatt:begrepsreferanse="http://begrepskatalog/begrep/L%C3%B8nnOgTilsvarendeYtelser">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="arbeidsgiver" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df1e-7662-11e6-a74e-7e18b36b3fd9" type="Enhet"/>
+            <xsd:element minOccurs="0" name="totalSamledeYtelserFraArbeidsgivere" type="TotalSamledeYtelserFraArbeidsgivere"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="totalSamledeYtelserFraArbeidsgiverePerBehandlingsart" type="TotalSamledeYtelserFraArbeidsgiverePerBehandlingsart"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="overskuddAvUtgiftsGodtgjoerelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408e9-d96a-11e6-8d9b-005056821322" type="OverskuddPaaUtgiftsGodtgjoerelse"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Fradrag" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4737-e484-11e6-9cb3-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="fagforeningskontingent" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740898-d96a-11e6-8d9b-005056821322" type="Fagforeningskontingent"/>
+            <xsd:element minOccurs="0" name="reiseIArbeidsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df51-7662-11e6-a74e-7e18b36b3fd9" type="ReiseIArbeidsforhold"/>
+            <xsd:element minOccurs="0" name="pensjonspremie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408af-d96a-11e6-8d9b-005056821322" type="Pensjonspremie"/>
+            <xsd:element minOccurs="0" name="kravOmKreditfradrag" type="KravOmKreditfradrag"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Pensjonsinntekter">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="samletPensjonsinntekt" type="SamletPensjonsinntekt"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="pensjonsinntektIArbeidsforhold" type="PensjonsinntektIArbeidsforhold"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SkattepliktstypeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="skattepliktstype" type="Skattepliktstype"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="KommunenummerMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f3-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="kommunenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f3-9fe1-11e5-a9f8-e4115b280940 " type="Kommunenummer"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="HeltallMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="heltall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52af0-9fe1-11e5-a9f8-e4115b280940 " type="Heltall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SkattemessigBostedEtterSkatteavtale">
+        <xsd:sequence>
+            <xsd:element name="land" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e241-9fe1-11e5-a9f8-e4115b280940" type="MetodeVedDobbeltbeskatningMedEndringsmetadata"/>
+            <xsd:element name="startdatoForOpphold" type="DatoMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Tilstand">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="fraGrunnlag"/>
+            <xsd:enumeration value="egenfastsatt"/>
+            <xsd:enumeration value="myndighetsfastsatt"/>
+            <xsd:enumeration value="slettet"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Opphav">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="grunnlagsdata"/>
+            <xsd:enumeration value="egenfastsetting"/>
+            <xsd:enumeration value="myndighetsfastsetting"/>
+            <xsd:enumeration value="beregning"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="Brukeridentifikator">
+        <xsd:sequence>
+            <xsd:element name="identifikator" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e2f8-9fe1-11e5-a9f8-e4115b280940" type="Tekst"/>
+            <xsd:element name="identifikatortype" type="Brukeridentifikatortype"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Kildedokumentreferanse">
+        <xsd:sequence>
+            <xsd:element name="kildedokumentidentifikator" type="Uri"/>
+            <xsd:element minOccurs="0" name="kildedokumenttype" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndreFradrag" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574086f-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gaveTilFrivilligOrganisasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b0f-9fe1-11e5-a9f8-e4115b280940" type="GaveTilFrivilligOrganisasjon"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Konto" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e326-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="bankensNavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df23-7662-11e6-a74e-7e18b36b3fd9" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element name="kontonummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e328-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element name="kontoeier" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e327-9fe1-11e5-a9f8-e4115b280940" type="NavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="land" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e241-9fe1-11e5-a9f8-e4115b280940" type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="innskudd" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e324-9fe1-11e5-a9f8-e4115b280940" type="Innskudd"/>
+            <xsd:element minOccurs="0" name="gjeld" skatt:begrepsreferanse="http://begrepskatalog/begrep/410ade56-9202-11e6-8b61-82ab1fa1f30b" type="Gjeld"/>
+            <xsd:element minOccurs="0" name="paaloepteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/p%C3%A5l%C3%B8pte%20renter" type="PaaloepteRenter"/>
+            <xsd:element minOccurs="0" name="opptjenteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1af-9fe1-11e5-a9f8-e4115b280940" type="OpptjenteRenter"/>
+            <xsd:element minOccurs="0" name="tilbakefoertRente" skatt:begrepsreferanse="http://begrepskatalog/begrep/tilbakef%C3%B8rt%20rente" type="TilbakefoerteRenter"/>
+            <xsd:element minOccurs="0" name="valutalaan" skatt:begrepsreferanse="http://begrepskatalog/begrep/valutal%C3%A5n" type="Valutalaan"/>
+            <xsd:element minOccurs="0" name="betalteMisligholdteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1ab-9fe1-11e5-a9f8-e4115b280940" type="BetalteMisligholdteRenter"/>
+            <xsd:element minOccurs="0" name="betalteForsinkelsesrenter" skatt:begrepsreferanse="" type="BetalteForsinkelsesrenter"/>
+            <xsd:element minOccurs="0" name="skyldigRestskatt" type="SkyldigRestskatt"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrivateFordringer">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="privatUtestaaendeFordring" type="PrivatUtestaaendeFordring"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrivateGjeldsforhold">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="privatGjeldsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740870-d96a-11e6-8d9b-005056821322" type="PrivatGjeldsforhold"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Boligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e16d-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="boligsameietsNavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e16d-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="boenhetIBoligsameie" type="BoenhetIBoligsameie"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Boligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e17b-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="selskapetsNavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e17b-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="boenhetIBoligselskap" type="BoenhetIBoligselskap"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Kontantbeloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e333098-6837-11e6-a7ce-fac03dffe1d7">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Motorkjoeretoey" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408e0-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="listeprisSomNyttMotorkjoeretoey" type="ListeprisSomNyttMotorkjoeretoey"/>
+            <xsd:element minOccurs="0" name="formuesverdiForMotorkjoeretoey" type="FormuesverdiForMotorkjoeretoey"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="antattSalgsverdiForMotorkjoeretoeyEldreEnn30Aar" type="AntattSalgsverdiForMotorkjoeretoeyEldreEnn30Aar"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Campingvogn" skatt:begrepsreferanse="http://begrepskatalog/begrep/410ab749-9202-11e6-8b61-82ab1fa1f30b">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="listeprisSomNyCampingvogn" type="ListeprisSomNyCampingvogn"/>
+            <xsd:element minOccurs="0" name="formuesverdiForCampingvogn" type="FormuesverdiForCampingvogn"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="antattSalgsverdiForCampingvognEldreEnn30Aar" type="AntattSalgsverdiForCampingvognEldreEnn30Aar"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FastEiendom" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd0b-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="eierandel" skatt:begrepsreferanse="http://begrepskatalog/begrep/669825b0-1128-11e6-9458-0050568351d2" type="AndelMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="sergLikningsObjektIdentifikator" skatt:begrepsreferanse="http://begrepskatalog/begrep/669825b0-1128-11e6-9458-0050568351d2" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="matrikkelnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e115-9fe1-11e5-a9f8-e4115b280940" type="MatrikkelnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="internasjonalAdresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e12b-9fe1-11e5-a9f8-e4115b280940" type="InternasjonalAdresseMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="vegadresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e12e-9fe1-11e5-a9f8-e4115b280940" type="VegadresseMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="andelsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e178-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="aksjeboenhetsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e175-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="boligspesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574088c-d96a-11e6-8d9b-005056821322" type="Boligspesifikasjon"/>
+            <xsd:element minOccurs="0" name="formuesverdiForFastEiendom" type="FormuesverdiForFastEiendom"/>
+            <xsd:element name="eiendomstype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd09-2964-11e6-b2bc-96405985e0fa" type="EiendomstypeMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="useksjonertBoenhet" type="UseksjonertBoenhet"/>
+            <xsd:element minOccurs="0" name="markedsverdiFastEiendom" type="MarkedsverdiFastEiendom"/>
+            <xsd:element minOccurs="0" name="totalFormuesverdi" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd5d-2964-11e6-b2bc-96405985e0fa" type="TotalFormuesverdi"/>
+            <xsd:element minOccurs="0" name="forrigeAarsFormuesverdi" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd1a-2964-11e6-b2bc-96405985e0fa" type="ForrigeAarsFormuesverdi"/>
+            <xsd:element minOccurs="0" name="navnPaaBoligselskap" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="navnPaaBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e16d-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummerTilBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummerTilBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element name="eiendomErAnnetEnnBolig" type="BoolskMedEndringsmetadata"/>
+            <xsd:element name="eierIkkeLengerBolig" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="harDokumentasjonPaaBoligensMarkedsverdi" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Enhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e33307d-6837-11e6-a7ce-fac03dffe1d7">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="navn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a7-9fe1-11e5-a9f8-e4115b28094" type="OrganisasjonsnavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="samledeYtelserFraArbeidsgiver" type="SamledeYtelserFraArbeidsgiver"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="samledeYtelserFraArbeidsgiverPerBehandlingsart" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e33307d-6837-11e6-a7ce-fac03dffe1d7" type="SamledeYtelserFraArbeidsgiverPerBehandlingsart"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="underenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e33307d-6837-11e6-a7ce-fac03dffe1d7" type="Enhet"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ufoereytelseFraUtlandet" type="UfoereytelseFraUtlandet"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="annenInntektFraArbeidsgiver" type="AnnenInntektFraArbeidsgiver"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ytelseFraArbeidsgiver" type="YtelseFraArbeidsgiver"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f5-9fe1-11e5-a9f8-e4115b280940" type="VegadresseMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TotalSamledeYtelserFraArbeidsgivere">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepSomHeltall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TotalSamledeYtelserFraArbeidsgiverePerBehandlingsart">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepSomHeltall"/>
+            <xsd:element name="behandlingsart" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OverskuddPaaUtgiftsGodtgjoerelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df4a-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element name="bruttoInnbetaltBeloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408e9-d96a-11e6-8d9b-005056821322" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForLoennNaturalytelserMv"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element name="behandlingsart" type="TekstMedEndringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Fagforeningskontingent" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740898-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="fradragForFagforeningskontingent" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408ac-d96a-11e6-8d9b-005056821322" type="FradragForFagforeningskontingent"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="fagforening" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740897-d96a-11e6-8d9b-005056821322" type="Fagforening"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="samletBetaltFagforeningskontingentPrAar" type="SamletBetaltFagforeningskontingentPrAar"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReiseIArbeidsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df51-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="arbeidsreise" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df4f-7662-11e6-a74e-7e18b36b3fd9" type="Arbeidsreise"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="arbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574087c-d96a-11e6-8d9b-005056821322" type="ArbeidsoppholdUtenforHjemmet"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Pensjonspremie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408af-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="godkjentPensjonsordningIArbeidsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bd-d96a-11e6-8d9b-005056821322" type="GodkjentPensjonsordningIArbeidsforhold"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="samletPensjonsinnbetalingPrAar" type="SamletPensjonsinnbetalingPrAar"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="KravOmKreditfradrag" skatt:begrepsreferanse="">
+        <xsd:sequence>
+            <xsd:element name="kravOmTilbakefoeringAvUtelandskSkatt" type="BoolskMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="kravOmKreditfradragForFormueIUtlandet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd30-2964-11e6-b2bc-96405985e0fa" type="KravOmKreditfradragForFormueIUtlandet"/>
+            <xsd:element maxOccurs="5" minOccurs="0" name="fremfoertUtenlandskFormuesskatt" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd1c-2964-11e6-b2bc-96405985e0fa" type="FremfoertUtenlandskFormuesskatt"/>
+            <xsd:element maxOccurs="5" minOccurs="0" name="fremfoertUtenlandskInntektsskatt" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd1d-2964-11e6-b2bc-96405985e0fa" type="FremfoertUtenlandskInntektsskatt"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="kravOmKreditFradragForAnnenKapitalinntektIUtlandet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd31-2964-11e6-b2bc-96405985e0fa" type="KravOmKreditFradragForAnnenKapitalinntektIUtlandet"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SamletPensjonsinntekt">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PensjonsinntektIArbeidsforhold">
+        <xsd:sequence>
+            <xsd:element name="pensjonstype" type="PensjonstypeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="beskrivelse" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="land" skatt:begrepsreferanse="http://begrepskatalog.skead.no/begrep/20b2e241-9fe1-11e5-a9f8-e4115b280940" type="LandkodeMedEndringsmetadata"/>
+            <xsd:element name="pensjonsgrad" type="PensjonsgradMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="pensjonsinntekt" type="Pensjonsinntekt"/>
+            <xsd:element name="tolvdeler" type="TolvdelerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="fraDato" type="DatoMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="tilDato" type="DatoMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Skattepliktstype">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="global"/>
+            <xsd:enumeration value="begrenset"/>
+            <xsd:enumeration value="ingenSkatteplikt"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Kommunenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f3-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst">
+            <xsd:pattern value="([0-9]){4}"/>
+            <xsd:length value="4"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Heltall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52af0-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:long"/>
+    </xsd:simpleType>
+    <xsd:complexType name="MetodeVedDobbeltbeskatningMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="metodeVedDobbeltsbeskatning" type="MetodeVedDobbeltbeskatning"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DatoMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="dato" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aed-9fe1-11e5-a9f8-e4115b280940 " type="Dato"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Brukeridentifikatortype">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52adf-9fe1-11e5-a9f8-e4115b280940" value="partsnummer"/>
+            <xsd:enumeration value="saksbehandleridentifikator"/>
+            <xsd:enumeration value="systemidentifikator"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Uri" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e148-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst"/>
+    </xsd:simpleType>
+    <xsd:complexType name="GaveTilFrivilligOrganisasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b0f-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="organisasjonensNavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b0f-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsNummer" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SpraakTekstMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e244-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="tekst" type="TekstMedEndringsmetadata"/>
+            <xsd:element name="spraak" type="SpraakkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OrganisasjonsnummerMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940 " type="Organisasjonsnummer"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TekstMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="tekst" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NavnMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="navn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e243-9fe1-11e5-a9f8-e4115b280940 " type="Navn"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LandkodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="landkode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e112-9fe1-11e5-a9f8-e4115b280940 " type="Landkode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Innskudd" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e324-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Gjeld" skatt:begrepsreferanse="http://begrepskatalog/begrep/410ade56-9202-11e6-8b61-82ab1fa1f30b">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="andelAvGjeldBenyttetTilFinansieringAvEiendomEllerNaeringsvirksomhetPaaSvalbard" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="andelAvGjeldBenyttetTilFinansieringAvEiendomEllerNaeringsvirksomhetPaaFastlandet" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PaaloepteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1b0-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="andelAvRenterBenyttetTilFinansieringAvEiendomEllerNaeringsvirksomhetPaaSvalbard" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="andelAvRenterBenyttetTilFinansieringAvEiendomEllerNaeringsvirksomhetPaaFastlandet" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OpptjenteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1af-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TilbakefoerteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e3330c5-6837-11e6-a7ce-fac03dffe1d7">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Valutalaan" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df70-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="produktNavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/valutal%C3%A5n" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="gevinstValutalaan" skatt:begrepsreferanse="http://begrepskatalog/begrep/gevinst%20fra%20valutal%C3%A5n" type="GevinstValutalaan"/>
+            <xsd:element minOccurs="0" name="tapValutalaan" type="TapValutalaan"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BetalteMisligholdteRenter" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1ab-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/tilbakef%C3%B8rt%20rente" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BetalteForsinkelsesrenter" skatt:begrepsreferanse="">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20inntekt" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SkyldigRestskatt" skatt:begrepsreferanse="http://begrepskatalog/begrep/skyldig%20restskatt">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepSomHeltall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrivatUtestaaendeFordring">
+        <xsd:sequence>
+            <xsd:element name="skyldner" skatt:begrepsreferanse="http://begrepskatalog/begrep/skyldner" type="NavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="opptjenteRenterFraPrivatUtestaaendeFordring" type="OpptjenteRenterFraPrivatUtestaaendeFordring"/>
+            <xsd:element minOccurs="0" name="formuesverdiAvPrivatUtestaaendeFordring" type="FormuesverdiAvPrivatUtestaaendeFordring"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrivatGjeldsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740870-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="fordringshaver" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574089c-d96a-11e6-8d9b-005056821322" type="NavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="privatGjeldsbeloep" type="PrivatGjeldsbeloep"/>
+            <xsd:element minOccurs="0" name="paaloepteRenterFraPrivatGjeld" type="PaaloepteRenterFraPrivatGjeld"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoenhetIBoligsameie">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="andelAvFellesgjeldIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740865-d96a-11e6-8d9b-005056821322" type="AndelAvFellesgjeldIBoligsameie"/>
+            <xsd:element minOccurs="0" name="andelAvAnnenFormueIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce4-2964-11e6-b2bc-96405985e0fa" type="AndelAvAnnenFormueIBoligsameie"/>
+            <xsd:element minOccurs="0" name="andelAvInntektIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce9-2964-11e6-b2bc-96405985e0fa" type="AndelAvInntektIBoligsameie"/>
+            <xsd:element minOccurs="0" name="andelAvFradragsberettigetKostnadBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce7-2964-11e6-b2bc-96405985e0fa" type="AndelAvFradragsberettigetFelleskostnadBoligsameie"/>
+            <xsd:element minOccurs="0" name="matrikkelnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e115-9fe1-11e5-a9f8-e4115b280940" type="MatrikkelnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoenhetIBoligselskap">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="aksjeboenhetsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e175-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="andelsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e178-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="andelAvFellesgjeldIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce6-2964-11e6-b2bc-96405985e0fa" type="AndelAvFellesgjeldIBoligselskap"/>
+            <xsd:element minOccurs="0" name="andelAvAnnenFormueIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce5-2964-11e6-b2bc-96405985e0fa" type="AndelAvAnnenFormueIBoligselskap"/>
+            <xsd:element minOccurs="0" name="andelAvInntektIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcea-2964-11e6-b2bc-96405985e0fa" type="AndelAvInntektIBoligselskap"/>
+            <xsd:element minOccurs="0" name="andelAvFradragsberettigetFelleskostnadBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce7-2964-11e6-b2bc-96405985e0fa" type="AndelAvFradragsberettigetFelleskostnadBoligselskap"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BeloepIValuta">
+        <xsd:sequence>
+            <xsd:element name="beloepINok" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="beloepIValuta" type="BeloepMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="valutakode" type="ValutakodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ListeprisSomNyttMotorkjoeretoey"/>
+    <xsd:complexType name="FormuesverdiForMotorkjoeretoey">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AntattSalgsverdiForMotorkjoeretoeyEldreEnn30Aar"/>
+    <xsd:complexType name="ListeprisSomNyCampingvogn"/>
+    <xsd:complexType name="FormuesverdiForCampingvogn">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AntattSalgsverdiForCampingvognEldreEnn30Aar"/>
+    <xsd:complexType name="AndelMedEndringsmetadata" skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/andel">
+        <xsd:sequence>
+            <xsd:element name="teller" skatt:begrepsreferanse="http://www.skatteetaten.no/teller" type="HeltallMedEndringsmetadata"/>
+            <xsd:element name="nevner" skatt:begrepsreferanse="http://www.skatteetaten.no/nevner" type="HeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MatrikkelnummerMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e115-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="kommunenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e121-9fe1-11e5-a9f8-e4115b280940 " type="KommunenummerMedEndringsmetadata"/>
+            <xsd:element name="gaardsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e111-9fe1-11e5-a9f8-e4115b280940 " type="HeltallMedEndringsmetadata"/>
+            <xsd:element name="bruksnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0fc-9fe1-11e5-a9f8-e4115b280940 " type="HeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="festenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e10c-9fe1-11e5-a9f8-e4115b280940 " type="HeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="seksjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b6f-9fe1-11e5-a9f8-e4115b280940 " type="HeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InternasjonalAdresseMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/799ab980-2f03-11e7-adc3-0050568351d2">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="coAdressenavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e104-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adressenavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f3-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adressenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f9-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="bygning" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e102-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="etasjenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e10a-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="boenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0fa-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="postboks" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e123-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="postkode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e124-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="byEllerStedsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e305-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="distriktsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e109-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element maxOccurs="6" minOccurs="0" name="administrativEnhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f4-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adressebrukskategori" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f7-9fe1-11e5-a9f8-e4115b280940" type="AdressebrukskategoriMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="landkode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e122-9fe1-11e5-a9f8-e4115b280940 " type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VegadresseMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e12d-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="adressenavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f3-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element name="adressenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f9-9fe1-11e5-a9f8-e4115b280940 " type="AdressenummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="bruksenhetsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0fc-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element name="poststed" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e308-9fe1-11e5-a9f8-e4115b280940 " type="PoststedMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="gatenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e110-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adressetilleggsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0fa-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="kommunenummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e121-9fe1-11e5-a9f8-e4115b280940 " type="KommunenummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Boligspesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574088c-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="boligtype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfc-2964-11e6-b2bc-96405985e0fa" type="BoligtypekodeMedEndringsmetadata"/>
+            <xsd:element name="boligBruk" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfa-2964-11e6-b2bc-96405985e0fa" type="BoligbrukskodeMedEndringsmetadata"/>
+            <xsd:element name="beliggenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcf3-2964-11e6-b2bc-96405985e0fa" type="BeliggenhetskodeMedEndringsmetadata"/>
+            <xsd:element name="boligensAreal" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfb-2964-11e6-b2bc-96405985e0fa" type="BoligensAreal"/>
+            <xsd:element minOccurs="0" name="bydelsNummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd01-2964-11e6-b2bc-96405985e0fa" type="HeltallMedEndringsmetadata"/>
+            <xsd:element name="byggeaar" type="AarstallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="kommunenavn" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="formuesaar" type="AarstallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FormuesverdiForFastEiendom" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd16-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="EiendomstypeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="eiendomstype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd09-2964-11e6-b2bc-96405985e0fa" type="Eiendomstype"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="UseksjonertBoenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd5f-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="bolignummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd5f-2964-11e6-b2bc-96405985e0fa" type="TekstMedEndringsmetadata"/>
+            <xsd:element name="vegadresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd5f-2964-11e6-b2bc-96405985e0fa" type="VegadresseMedEndringsmetadata"/>
+            <xsd:element name="boligspesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574088c-d96a-11e6-8d9b-005056821322" type="Boligspesifikasjon"/>
+            <xsd:element minOccurs="0" name="formuesverdiForUseksjonertBoenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408a6-d96a-11e6-8d9b-005056821322" type="FormuesverdiForUseksjonertBoenhet"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MarkedsverdiFastEiendom" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd3d-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TotalFormuesverdi" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd5d-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ForrigeAarsFormuesverdi" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd1a-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoolskMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="boolsk" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aec-9fe1-11e5-a9f8-e4115b280940 " type="Boolsk"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OrganisasjonsnavnMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="organisasjonsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a7-9fe1-11e5-a9f8-e4115b280940 " type="Organisasjonsnavn"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SamledeYtelserFraArbeidsgiver">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepSomHeltall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SamledeYtelserFraArbeidsgiverPerBehandlingsart">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element name="behandlingsart" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="UfoereytelseFraUtlandet" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df69-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="land" skatt:begrepsreferanse="http://begrepskatalog/begrep/land" type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="fraDato" skatt:begrepsreferanse="http://begrepskatalog/begrep/uf%C3%B8reytelse" type="DatoMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="tilDato" skatt:begrepsreferanse="http://begrepskatalog/begrep/uf%C3%B8reytelse" type="DatoMedEndringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AnnenInntektFraArbeidsgiver" skatt:begrepsreferanse="http://begrepskatalog/begrep/1e333070-6837-11e6-a7ce-fac03dffe1d7">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="spesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20arbeidsinntekt" type="TekstMedEndringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="YtelseFraArbeidsgiver" skatt:begrepsreferanse="http://begrepskatalog/begrep/Ytelse%20Fra%20Arbeidsgiver">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element minOccurs="0" name="loennsinntekt" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df44-7662-11e6-a74e-7e18b36b3fd9" type="Loennsinntekt"/>
+            </xsd:choice>
+            <xsd:element minOccurs="0" name="inntektsmottakerErSkattemessigBosattILand" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb47af-e484-11e6-9cb3-005056821322" type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="spesielleOpptjeningsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408c4-d96a-11e6-8d9b-005056821322" type="SpesielleOpptjeningsforholdMedEndringsmetadata"/>
+            <xsd:element name="fordel" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574089b-d96a-11e6-8d9b-005056821322" type="FordelMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="skatteOgAvgiftsregel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb47ae-e484-11e6-9cb3-005056821322" type="SkatteOgAvgiftsregelMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element name="inngaarIGrunnlagForTrekk" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4746-e484-11e6-9cb3-005056821322" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="behandlingsart" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df25-7662-11e6-a74e-7e18b36b3fd9" type="TekstMedEndringsmetadata"/>
+            <xsd:element name="utloeserArbeidsgiveravgift" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb47d9-e484-11e6-9cb3-005056821322" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="antall" type="DesimaltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="kalendermaaned" type="AarOgMaanedMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="avvikskode" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740880-d96a-11e6-8d9b-005056821322" type="AvvikskodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="opptjeningsspesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/l%C3%B8nnsopplysning" type="Opptjeningsspesifikasjon"/>
+            <xsd:element minOccurs="0" name="ytelsesbeskrivelse" type="Ytelsesbeskrivelse"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="BeloepSomHeltall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e146-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Heltall"/>
+    </xsd:simpleType>
+    <xsd:complexType name="AarsakTilEndringForLoennNaturalytelserMv">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakskoderTilEndringForLoennNaturalytelserMv"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FradragForFagforeningskontingent" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408ac-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Fagforening" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740897-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="beskrivelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740897-d96a-11e6-8d9b-005056821322" type="TekstMedEndringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="betaltFagforeningskontingent" type="BetaltFagforeningskontingent"/>
+            <xsd:element minOccurs="0" name="rapporterendeEnhetArbeidsgiver" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aba-9fe1-11e5-a9f8-e4115b280940" type="RapporterendeEnhet"/>
+            <xsd:element minOccurs="0" name="rapporterendeEnhetFagforening" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aba-9fe1-11e5-a9f8-e4115b280940" type="RapporterendeEnhet"/>
+            <xsd:element minOccurs="0" name="betaltFagforeningskontingentPrFagforeningPrAar" type="BetaltFagforeningskontingentPrFagforeningPrAar"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SamletBetaltFagforeningskontingentPrAar">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepSomHeltallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Arbeidsreise" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df4f-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element minOccurs="0" name="lengdeAvArbeidsreiseEnVei" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df4f-7662-11e6-a74e-7e18b36b3fd9" type="AntallMedEndringsmetadata"/>
+                <xsd:element minOccurs="0" name="lengdeAvArbeidsreiseTurRetur" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df4f-7662-11e6-a74e-7e18b36b3fd9" type="AntallMedEndringsmetadata"/>
+            </xsd:choice>
+            <xsd:element name="antallDagerMedArbeidsreise" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740875-d96a-11e6-8d9b-005056821322" type="AntallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adresseArbeidsplass" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df4f-7662-11e6-a74e-7e18b36b3fd9" type="GenerellAdresse"/>
+            <xsd:element minOccurs="0" name="reisevei" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="bompengeEllerFergeutgifterUnderArbeidsreise" type="FaktiskReisekostnad"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="annenReisekostnadForArbeidsreise" skatt:begrepsreferanse="http://begrepskatalogref/begrep/b574086c-d96a-11e6-8d9b-005056821322" type="FaktiskReisekostnad"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574087c-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="antallDager" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574087c-d96a-11e6-8d9b-005056821322" type="AntallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="tidsperiode" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574087c-d96a-11e6-8d9b-005056821322" type="PeriodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="harMottattGodtgjoerelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574087c-d96a-11e6-8d9b-005056821322" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="antallBesoeksreiserTilHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574087c-d96a-11e6-8d9b-005056821322" type="AntallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="arbeidsgiversNavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df1e-7662-11e6-a74e-7e18b36b3fd9" type="OrganisasjonsnavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="merkostnadForKostVedArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408db-d96a-11e6-8d9b-005056821322" type="MerkostnadForKostVedArbeidsoppholdUtenforHjemmet"/>
+            <xsd:element minOccurs="0" name="merkostnadForLosjiVedArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408dc-d96a-11e6-8d9b-005056821322" type="MerkostnadForLosjiVedArbeidsoppholdUtenforHjemmet"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="besoeksreiseTilHjemUtenforEOeSOmraadet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740887-d96a-11e6-8d9b-005056821322" type="BesoeksreiseTilHjemUtenforEoesOmraadet"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="besoeksreiseTilHjemInnenforEoesOmraadet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740886-d96a-11e6-8d9b-005056821322" type="BesoeksreiseTilHjemInnenforEoesOmraadet"/>
+            <xsd:element minOccurs="0" name="arbeidsgiversOrganisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="godtgjoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bf-d96a-11e6-8d9b-005056821322" type="GodtgjoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmet"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GodkjentPensjonsordningIArbeidsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bd-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="betaltTil" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bd-d96a-11e6-8d9b-005056821322" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="beskrivelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bd-d96a-11e6-8d9b-005056821322" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="datoForOppstartAvPensjonsordningen" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bd-d96a-11e6-8d9b-005056821322" type="DatoMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="land" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e241-9fe1-11e5-a9f8-e4115b280940" type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="pensjonsinnbetaling" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1d5-9fe1-11e5-a9f8-e4115b280940" type="Pensjonsinnbetaling"/>
+            <xsd:element minOccurs="0" name="fradragForPensjonspremieForPensjonsordningIArbeidsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408af-d96a-11e6-8d9b-005056821322" type="FradragForPensjonspremieTilPensjonsordningIArbeidsforhold"/>
+            <xsd:element minOccurs="0" name="rapporterendeEnhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aba-9fe1-11e5-a9f8-e4115b280940" type="RapporterendeEnhet"/>
+            <xsd:element minOccurs="0" name="pensjonsinnbetalingPrPensjonsordningPrAar" type="PensjonsinnbetalingPrPensjonsordningPrAar"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SamletPensjonsinnbetalingPrAar">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="KravOmKreditfradragForFormueIUtlandet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd30-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="formuesart" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd30-2964-11e6-b2bc-96405985e0fa" type="Formuesart"/>
+            <xsd:element name="formuesverdi" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd30-2964-11e6-b2bc-96405985e0fa" type="BeloepIValuta"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FremfoertUtenlandskFormuesskatt" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd1c-2964-11e6-b2bc-96405985e0fa"/>
+    <xsd:complexType name="FremfoertUtenlandskInntektsskatt" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd1d-2964-11e6-b2bc-96405985e0fa"/>
+    <xsd:complexType name="KravOmKreditFradragForAnnenKapitalinntektIUtlandet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd31-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="inntektstype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd31-2964-11e6-b2bc-96405985e0fa" type="Inntektstype"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PensjonstypeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element name="pensjonstype" type="Pensjonstype"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PensjonsgradMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="pensjonsgrad" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4798-e484-11e6-9cb3-005056821322 " type="Pensjonsgrad"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Pensjonsinntekt">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TolvdelerMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="tolvdeler" type="Tolvdeler"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="MetodeVedDobbeltbeskatning" skatt:eksternKodeliste="http://kodelistekatalog/kodeliste/2017_metodeVedDobbeltbeskatningPrLand.xml">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:complexType name="SpraakkodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="spraak" type="Spraakkode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst">
+            <xsd:pattern value="[0-9]+"/>
+            <xsd:length value="9"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Navn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e243-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="200"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Landkode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e112-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst">
+            <xsd:pattern value="([A-Z]){2}"/>
+            <xsd:length value="2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="AarsakTilEndringForSaldoRente">
+        <xsd:sequence>
+            <xsd:element name="aarsakskode" type="AarsakskoderTilEndringForSaldoRente"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="overfoertTilEllerFraPerson" type="Person"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="overfoertTilEllerFraOrganisasjon" type="Organisasjon"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BeloepSomHeltallMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="beloepSomHeltall" type="BeloepSomHeltall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GevinstValutalaan" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df37-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TapValutalaan">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/gevinst%20fra%20valutal%C3%A5n" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForSaldoRente"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OpptjenteRenterFraPrivatUtestaaendeFordring">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForPrivatLaan"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FormuesverdiAvPrivatUtestaaendeFordring">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForPrivatLaan"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrivatGjeldsbeloep">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForPrivatLaan"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PaaloepteRenterFraPrivatGjeld">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20inntekt" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForPrivatLaan"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvFellesgjeldIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740865-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/andel%20av%20fellesgjeld%20i%20boligselskap" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvAnnenFormueIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce4-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/andel%20annen%20formue%20i%20boligselskap" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvInntektIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce9-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvFradragsberettigetFelleskostnadBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce7-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="andelAvFradragsberettigedeRenterIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740869-d96a-11e6-8d9b-005056821322" type="AndelAvFradragsberettigedeRenterIBoligsameie"/>
+            <xsd:element minOccurs="0" name="andelAvAndreFradragsberettigedeKostnaderIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740868-d96a-11e6-8d9b-005056821322" type="AndelAvAndreFradragsberettigedeKostnaderIBoligsameie"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvFellesgjeldIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce6-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvAnnenFormueIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce5-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvInntektIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcea-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvFradragsberettigetFelleskostnadBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fce7-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="andelAvFradragsberettigedeRenterIBoligselskap" type="AndelAvFradragsberettigedeRenterIBoligselskap"/>
+            <xsd:element minOccurs="0" name="andelAvAndreFradragsberettigedeKostnaderIBoligselskap" type="AndelAvAndreFradragsberettigedeKostnaderIBoligselskap"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BeloepMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e146-9fe1-11e5-a9f8-e4115b280940" type="Beloep"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ValutakodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="valutakode" type="Valutakode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AdressebrukskategoriMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="adressebrukskategori" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f7-9fe1-11e5-a9f8-e4115b280940" type="Adressebrukskategori"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AdressenummerMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0fa-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="husnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e11f-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="husbokstav" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e112-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PoststedMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="poststedsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52b6e-9fe1-11e5-a9f8-e4115b280940 " type="TekstMedEndringsmetadata"/>
+            <xsd:element name="postnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e16b-9fe1-11e5-a9f8-e4115b280940 " type="Postnummer"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoligtypekodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="boligtype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfc-2964-11e6-b2bc-96405985e0fa" type="BoligtypeKode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoligbrukskodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="boligBruk" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfa-2964-11e6-b2bc-96405985e0fa" type="BoligbruksKode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BeliggenhetskodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="beliggenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcf3-2964-11e6-b2bc-96405985e0fa" type="BeliggenhetsKode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BoligensAreal" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfb-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element name="areal" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfb-2964-11e6-b2bc-96405985e0fa" type="HeltallMedEndringsmetadata"/>
+            <xsd:element name="typeAreal" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfb-2964-11e6-b2bc-96405985e0fa" type="BoligarealmaalMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AarstallMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="aarstall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e14a-9fe1-11e5-a9f8-e4115b280940" type="Aarstall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AarsakTilEndringForFastEiendom">
+        <xsd:sequence>
+            <xsd:element name="aarsakskode" type="AarsakskoderTilEndringForFastEiendom"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="overfoertTilEllerFraPerson" type="Person"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="overfoertTilEllerFraOrganisasjon" type="Organisasjon"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Eiendomstype" skatt:begrepsreferanse="http://begrepskatalog.skead.no/begrep/Eiendomstype">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/andel%20i%20fritidsboligselskap&#10;" value="bruksenhetIFritidsboligSelskap"/>
+            <xsd:enumeration skatt:begrepsreferanse="https://aurora/wiki/display/SIR/annen+fast+eiendom" value="annenFastEiendomMedSkattepliktigAvkastning"/>
+            <xsd:enumeration skatt:begrepsreferanse="https://aurora/wiki/display/SIR/annen+fast+eiendom" value="annenFastEiendomUtenSkattepliktigAvkastning"/>
+            <xsd:enumeration value="fastEiendomPaaSvalbard"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Boenhet%20i%20boligselskap" value="boenhetIBoligselskap"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Fast%20eiendom%20i%20utlandet" value="fastEiendomIUtlandet"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Flerboligbygning" value="flerboligbygning"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Jordbrukseiendom" value="jordbrukseiendom"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/n%C3%A6ringseiendom" value="naeringseiendom"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Selveid%20bolig" value="selveidBolig"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Selveid%20fritidseiendom" value="selveidFritidseiendom"/>
+            <xsd:enumeration value="skalIkkeFastsettes"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Skogeiendom" value="skogeiendom"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/Tomt" value="tomt"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/kraftanlegg" value="kraftanlegg "/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/n%C3%A6ringseiendom" value="naeringseiendomSomErUtleid"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/n%C3%A6ringseiendom" value="naeringseiendomSomIkkeErUtleid"/>
+            <xsd:enumeration value="selveidFritidseiendomSomIkkeErUtleidSomDelAvEierensNaeringsvirksomhet"/>
+            <xsd:enumeration value="ubebygdEiendomSomIkkeErUtleid"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="FormuesverdiForUseksjonertBoenhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408a6-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Boolsk" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aec-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:boolean"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="Organisasjonsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a7-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst">
+            <xsd:maxLength value="175"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="Loennsinntekt" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df44-7662-11e6-a74e-7e18b36b3fd9">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForLoennNaturalytelserMv"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SpesielleOpptjeningsforholdMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="spesielleOpptjeningsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408c4-d96a-11e6-8d9b-005056821322" type="SpesielleOpptjeningsforhold"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FordelMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="fordel" skatt:begrepsreferanse="http://begrepskatalog/begrep/b574089b-d96a-11e6-8d9b-005056821322" type="Fordel"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SkatteOgAvgiftsregelMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="skatteOgAvgiftsregel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb47ae-e484-11e6-9cb3-005056821322" type="SkatteOgAvgiftsregel"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DesimaltallMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aef-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="desimaltall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aef-9fe1-11e5-a9f8-e4115b280940 " type="Desimaltall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AarOgMaanedMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="aarOgMaaned" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e149-9fe1-11e5-a9f8-e4115b280940" type="AarOgMaaned"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AvvikskodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="avvikskode" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740880-d96a-11e6-8d9b-005056821322" type="Avvikskode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Opptjeningsspesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd3c-2964-11e6-b2bc-96405985e0fa">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="opptjeningsland" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4786-e484-11e6-9cb3-005056821322" type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="erOpptjentPaaHjelpefartoey" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4788-e484-11e6-9cb3-005056821322" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="erOpptjentPaaKontinentalsokkel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4789-e484-11e6-9cb3-005056821322" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="opptjentPaaNorskKontinentalsokkel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4789-e484-11e6-9cb3-005056821322" type="NorskKontinentalsokkel"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Ytelsesbeskrivelse" skatt:begrepsreferanse="http://begrepskatalog.skead.no/begrep/ytelsesbeskrivelse">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element name="ytelseFraDetOffentligeBeskrivelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb47df-e484-11e6-9cb3-005056821322" type="TekstMedEndringsmetadata"/>
+                <xsd:element name="loennsBeskrivelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb476e-e484-11e6-9cb3-005056821322" type="TekstMedEndringsmetadata"/>
+                <xsd:element name="ufoereYtelseBeskrivelse" skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df69-7662-11e6-a74e-7e18b36b3fd9" type="TekstMedEndringsmetadata"/>
+            </xsd:choice>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="AarsakskoderTilEndringForLoennNaturalytelserMv">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AndreAarsaker"/>
+            <xsd:enumeration value="FeilEllerManglendeRapportering"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="BetaltFagforeningskontingent">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="kalendermaaned" type="AarOgMaanedMedEndringsmetadata"/>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RapporterendeEnhet" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aba-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="navn" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BetaltFagforeningskontingentPrFagforeningPrAar">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AntallMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="antall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e145-9fe1-11e5-a9f8-e4115b280940" type="Antall"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GenerellAdresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e10d-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="adressetekst" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0fb-9fe1-11e5-a9f8-e4115b280940" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="poststed" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e122-9fe1-11e5-a9f8-e4115b280940 " type="PoststedMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="landkode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e112-9fe1-11e5-a9f8-e4115b280940 " type="LandkodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FaktiskReisekostnad" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740871-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="erBompengeEllerFergeutgifter" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="spesifikasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740871-d96a-11e6-8d9b-005056821322" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PeriodeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="start" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd03-2964-11e6-b2bc-96405985e0fa " type="DatoKlokkeslettMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="slutt" skatt:begrepsreferanse="http://begrepskatalog/begrep/5138da05-be20-11e6-8004-005056825ca0 " type="DatoKlokkeslettMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MerkostnadForKostVedArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408db-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element name="beregnetMerkostnadForKostEtterStandardsats" type="BoolskMedEndringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MerkostnadForLosjiVedArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408dc-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="losjitype" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408d9-d96a-11e6-8d9b-005056821322" type="LosjitypeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BesoeksreiseTilHjemUtenforEoesOmraadet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740887-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="reisemaate" type="TekstMedEndringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BesoeksreiseTilHjemInnenforEoesOmraadet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740886-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element minOccurs="0" name="lengdeAvBesoeksreiseEnVei" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408d3-d96a-11e6-8d9b-005056821322" type="AntallMedEndringsmetadata"/>
+                <xsd:element minOccurs="0" name="lengdeAvBesoekreiseTurRetur" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408d3-d96a-11e6-8d9b-005056821322" type="AntallMedEndringsmetadata"/>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GodtgjoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmet" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408bf-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element name="typeGodtgjoerelse" type="TypeGodtgoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmetMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="antallDager" type="AntallMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Pensjonsinnbetaling" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1d5-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="kalendermaaned" type="AarOgMaanedMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FradragForPensjonspremieTilPensjonsordningIArbeidsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408af-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PensjonsinnbetalingPrPensjonsordningPrAar">
+        <xsd:sequence>
+            <xsd:element name="beloep" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Formuesart">
+        <xsd:sequence>
+            <xsd:element name="formuesart" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd30-2964-11e6-b2bc-96405985e0fa" type="FormuesartKodeMedMetadata"/>
+            <xsd:element minOccurs="0" name="beskrivelse" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Inntektstype" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb474e-e484-11e6-9cb3-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="inntektstype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd31-2964-11e6-b2bc-96405985e0fa" type="InntektstypeKodeMedMetadata"/>
+            <xsd:element minOccurs="0" name="beskrivelse" type="SpraakTekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Pensjonstype">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="pensjonFraFolketrygden"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog.skead.no/begrep/27750cf0-4060-11e7-befc-0050568351d2" value="avtalefestetPensjonIOffentligSektor"/>
+            <xsd:enumeration value="avtalefestetPensjonIPrivatSektorSomBegynteAaLoepeFoer01012011"/>
+            <xsd:enumeration value="avtalefestetPensjonIPrivatSektorSomBegynteAaLoepeFraOgMed01012011"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/ce8e9abf-70e6-11e6-acbe-e635f0461918" value="foederaad"/>
+            <xsd:enumeration value="supplerendeStoenadTilPersonMedKortBotidNorge"/>
+            <xsd:enumeration value="livrenterIArbeidsforholdOpprettetFoer01012007"/>
+            <xsd:enumeration value="ektefelletillegg"/>
+            <xsd:enumeration value="individuellPensjonsavtale"/>
+            <xsd:enumeration value="kollektivPensjonsordning"/>
+            <xsd:enumeration value="annenPensjonstype"/>
+            <xsd:enumeration value="tjenestepensjon"/>
+            <xsd:enumeration value="skattefriPensjonFraUtlandet"/>
+            <xsd:enumeration value="pensjonFraEOeSStatSomTilsvarerAlderspensjonEllerAvtalefestetPensjon"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Pensjonsgrad" skatt:begrepsreferanse="http://begrepskatalog.skead.no/begrep/dcfb4798-e484-11e6-9cb3-005056821322">
+        <xsd:restriction base="Prosent">
+            <xsd:pattern value="20|40|50|60|80|100"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Tolvdeler">
+        <xsd:restriction base="Heltall">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="12"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Spraakkode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a1-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="AarsakskoderTilEndringForSaldoRente">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AndreAarsaker"/>
+            <xsd:enumeration value="FeilEllerManglendeRapportering"/>
+            <xsd:enumeration value="OverfoertTilFraEktefelleSamboer"/>
+            <xsd:enumeration value="OverfoertTilFraAndreEnnEktefelleSamboer"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="Person" skatt:begrepsreferanse="http://begrepskatalog/begrep/88804c43-ff43-11e6-9d97-005056825ca0">
+        <xsd:sequence>
+            <xsd:element name="personnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/88804c45-ff43-11e6-9d97-005056825ca0" type="PersonnavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="dnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/c2621880-e6fa-11e6-9f1a-0050568351d2" type="DnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="foedselsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/5138da11-be20-11e6-8004-005056825ca0" type="FoedselsnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="internasjonalIdentifikator" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4752-e484-11e6-9cb3-005056821322" type="TekstMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408c7-d96a-11e6-8d9b-005056821322" type="InternasjonalAdresseMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Organisasjon" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e23a-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:sequence>
+            <xsd:element name="organisasjonsnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a7-9fe1-11e5-a9f8-e4115b280940" type="OrganisasjonsnavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="organisasjonsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a8-9fe1-11e5-a9f8-e4115b280940 " type="OrganisasjonsnummerMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="adresse" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408c7-d96a-11e6-8d9b-005056821322" type="InternasjonalAdresseMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+            <xsd:element minOccurs="0" name="id" type="Tekst"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AarsakTilEndringForPrivatLaan">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="aarsakskode" type="AarsakskoderTilEndringForPrivatLaan"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="overfoertTilEllerFraPerson" type="Person"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="overfoertTilEllerFraOrganisasjon" type="Organisasjon"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvFradragsberettigedeRenterIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740869-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20inntekt" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvAndreFradragsberettigedeKostnaderIBoligsameie" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740868-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20inntekt" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvFradragsberettigedeRenterIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740869-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20inntekt" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AndelAvAndreFradragsberettigedeKostnaderIBoligselskap" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740868-d96a-11e6-8d9b-005056821322">
+        <xsd:sequence>
+            <xsd:element name="beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/annen%20inntekt" type="BeloepIValuta"/>
+            <xsd:element minOccurs="0" name="aarsakTilEndring" type="AarsakTilEndringForFastEiendom"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Beloep" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e146-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Desimaltall"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="Valutakode" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e1a2-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="Adressebrukskategori" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e0f7-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/offisiellforretning" value="offisiellForretning"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/offisiellpost" value="offisiellPost"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/virksomhet" value="virksomhet"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/bosted" value="bosted"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/post" value="post"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://www.skatteetaten.no/begrep/adresse/leveranse" value="leveranse"/>
+            <xsd:enumeration skatt:begrepsreferanse="http:///www.skatteetaten.no/begrep/ukjent" value="ukjent"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Postnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e121-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Tekst">
+            <xsd:pattern value="([0-9]){4}"/>
+            <xsd:length value="4"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="BoligtypeKode" skatt:begrepsreferanse="http://begrepskatalog/begrep/boligtype">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/enebolig" value="enebolig"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/sm%C3%A5hus" value="smaahus"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/leilighet" value="leilighet"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="BoligbruksKode" skatt:begrepsreferanse="http://begrepskatalog/begrep/boligbruk">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/prim%C3%A6rbolig" value="primaerbolig"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/410ade85-9202-11e6-8b61-82ab1fa1f30b" value="sekundaerbolig"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="BeliggenhetsKode" skatt:begrepsreferanse="http://begrepskatalog/begrep/beliggenhet">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="1"/>
+            <xsd:enumeration value="2"/>
+            <xsd:enumeration value="3"/>
+            <xsd:enumeration value="4"/>
+            <xsd:enumeration value="5"/>
+            <xsd:enumeration value="6"/>
+            <xsd:enumeration value="7"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="BoligarealmaalMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="boligarealmaal" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fcfb-2964-11e6-b2bc-96405985e0fa" type="Boligarealmaal"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="AarsakskoderTilEndringForFastEiendom">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AndreAarsaker"/>
+            <xsd:enumeration value="NyBolig"/>
+            <xsd:enumeration value="EierIkkeEiendommenLenger"/>
+            <xsd:enumeration value="OverfoertTilFraEktefelleSamboer"/>
+            <xsd:enumeration value="OverfoertTilFraAndreEnnEktefelleSamboer"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="SpesielleOpptjeningsforhold" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408c4-d96a-11e6-8d9b-005056821322">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="hyreTilMannskapPaaFiskeSmaahvalfangstOgSelfangstfartoey"/>
+            <xsd:enumeration value="loennOgAnnenGodtgjoerelseSomIkkeErSkattepliktig"/>
+            <xsd:enumeration value="loennUtbetaltFraDenNorskeStatOpptjentIUtlandet"/>
+            <xsd:enumeration value="loennVedArbeidsmarkedstiltak"/>
+            <xsd:enumeration value="loennVedKonkursEllerStatsgarantiOsv"/>
+            <xsd:enumeration value="skattefriArbeidsinntektBarnUnderTrettenAar"/>
+            <xsd:enumeration value="statsansattIUtlandet"/>
+            <xsd:enumeration value="utenlandskeSjoefolkSomIkkeErSkattepliktig"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Fordel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4730-e484-11e6-9cb3-005056821322">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb475b-e484-11e6-9cb3-005056821322" value="kontantytelse"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df47-7662-11e6-a74e-7e18b36b3fd9" value="naturalytelse"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/8ea2df6e-7662-11e6-a74e-7e18b36b3fd9" value="utgiftsgodtgjoerelse"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="SkatteOgAvgiftsregel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb47ae-e484-11e6-9cb3-005056821322">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb471c-e484-11e6-9cb3-005056821322" value="dagmammaIEgetHjem"/>
+            <xsd:enumeration value="janMayenOgBilandene"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb4759-e484-11e6-9cb3-005056821322" value="kildeskattPaaPensjoner"/>
+            <xsd:enumeration value="loennsarbeidIHjemmet"/>
+            <xsd:enumeration value="nettoloenn"/>
+            <xsd:enumeration value="svalbard"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408c3-d96a-11e6-8d9b-005056821322" value="saerskiltFradragForSjoefolk"/>
+            <xsd:enumeration value="veldedigEllerAlmennyttigOrganisasjon"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Desimaltall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aef-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:decimal"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="AarOgMaaned" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e149-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="xsd:gYearMonth"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="Avvikskode" skatt:begrepsreferanse="http://begrepskatalog/begrep/b5740880-d96a-11e6-8d9b-005056821322">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MAGNET_EDAG-200"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="NorskKontinentalsokkel" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb475c-e484-11e6-9cb3-005056821322">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="tidsrom" type="PeriodeMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="gjelderLoennFoerste60Dager" skatt:begrepsreferanse="http://begrepskatalog/begrep/dcfb473c-e484-11e6-9cb3-005056821322" type="BoolskMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Antall" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b2e145-9fe1-11e5-a9f8-e4115b280940">
+        <xsd:restriction base="Heltall"/>
+    </xsd:simpleType>
+    <xsd:complexType name="DatoKlokkeslettMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="datoKlokkeslett" skatt:begrepsreferanse="http://begrepskatalog/begrep/20b52aee-9fe1-11e5-a9f8-e4115b280940" type="DatoKlokkeslett"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LosjitypeMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="losjiType" skatt:begrepsreferanse="http://begrepskatalog/begrep/b57408d9-d96a-11e6-8d9b-005056821322 " type="Losjitype"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TypeGodtgoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmetMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="typeGodtgoerelse" type="TypeGodtgoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmet"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FormuesartKodeMedMetadata">
+        <xsd:sequence>
+            <xsd:element name="formuesart" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd30-2964-11e6-b2bc-96405985e0fa" type="FormuesartKode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InntektstypeKodeMedMetadata">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="inntektstype" skatt:begrepsreferanse="http://begrepskatalog/begrep/9c33fd31-2964-11e6-b2bc-96405985e0fa" type="InntektstypeKode"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="Prosent" skatt:begrepsreferanse="http://begrepskatalog/begrep/5d2b8b80-b7e8-11e7-aa27-0050568351d2">
+        <xsd:restriction base="Desimaltall"/>
+    </xsd:simpleType>
+    <xsd:complexType name="PersonnavnMedEndringsmetadata" skatt:begrepsreferanse="http://begrepskatalog/begrep/88804c45-ff43-11e6-9d97-005056825ca0">
+        <xsd:sequence>
+            <xsd:element name="fornavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/5138da05-be20-11e6-8004-005056825ca0 " type="NavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="mellomnavn" skatt:begrepsreferanse="http://begrepskatalog/begrep/88804c2f-ff43-11e6-9d97-005056825ca0" type="NavnMedEndringsmetadata"/>
+            <xsd:element name="etternavn" type="NavnMedEndringsmetadata"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DnummerMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="dnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/c2621880-e6fa-11e6-9f1a-0050568351d2 " type="Dnummer"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FoedselsnummerMedEndringsmetadata">
+        <xsd:sequence>
+            <xsd:element name="foedselsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/5138da11-be20-11e6-8004-005056825ca0 " type="Foedselsnummer"/>
+            <xsd:element minOccurs="0" name="endringsmetadata" type="Endringsmetadata"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="AarsakskoderTilEndringForPrivatLaan">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AndreAarsaker"/>
+            <xsd:enumeration value="FeilEllerManglendeRapportering"/>
+            <xsd:enumeration value="OverfoertTilFraEktefelleSamboer"/>
+            <xsd:enumeration value="OverfoertTilFraAndreEnnEktefelleSamboer"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Boligarealmaal" skatt:begrepsreferanse="http://begrepskatalog/begrep/boligens%20areal">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/prim%C3%A6rromareal" value="primaerromareal"/>
+            <xsd:enumeration skatt:begrepsreferanse="http://begrepskatalog/begrep/boligareal" value="boligareal"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Losjitype">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="arbeidsgiversBrakkeCampingvogn"/>
+            <xsd:enumeration value="losji"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="TypeGodtgoerelseForKostOgLosjiVedArbeidsoppholdUtenforHjemmet">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="kost"/>
+            <xsd:enumeration value="losji"/>
+            <xsd:enumeration value="losjiEgenBrakkeCampingvogn"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="FormuesartKode">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="FastEiendom"/>
+            <xsd:enumeration value="Loesoere"/>
+            <xsd:enumeration value="Annet"/>
+            <xsd:enumeration value="..."/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="InntektstypeKode">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Loenn"/>
+            <xsd:enumeration value="UtleieAvFastEiendom"/>
+            <xsd:enumeration value="GevinstVedSalgAvFastEiendom"/>
+            <xsd:enumeration value="Annet"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Dnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/c2621880-e6fa-11e6-9f1a-0050568351d2">
+        <xsd:restriction base="Tekst">
+            <xsd:pattern value="[0-9]+"/>
+            <xsd:length value="11"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Foedselsnummer" skatt:begrepsreferanse="http://begrepskatalog/begrep/5138da11-be20-11e6-8004-005056825ca0">
+        <xsd:restriction base="Tekst">
+            <xsd:pattern value="[0-9]+"/>
+            <xsd:length value="11"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
