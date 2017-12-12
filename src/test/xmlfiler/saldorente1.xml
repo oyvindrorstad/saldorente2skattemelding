@@ -67,7 +67,7 @@
     <renteinntektIAnnenValuta>0</renteinntektIAnnenValuta>
     <disponent>
         <partsnummer>String</partsnummer>
-        <organisasjonsnummer>String</organisasjonsnummer>
+        <organisasjonsnummer>998877665</organisasjonsnummer>
         <organisasjonsnavn>String</organisasjonsnavn>
         <internasjonalIdentifikator>
             <identifikator>a</identifikator>
@@ -99,7 +99,7 @@
     </disponent>
     <reellRettighetshaver>
         <partsnummer>String</partsnummer>
-        <organisasjonsnummer>String</organisasjonsnummer>
+        <organisasjonsnummer>998877665</organisasjonsnummer>
         <organisasjonsnavn>String</organisasjonsnavn>
         <internasjonalIdentifikator>
             <identifikator>a</identifikator>

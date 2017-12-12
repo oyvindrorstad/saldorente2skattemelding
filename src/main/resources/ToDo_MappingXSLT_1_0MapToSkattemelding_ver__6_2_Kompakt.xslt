@@ -26,6 +26,44 @@ http://www.altova.com/mapforce
             <inntektsaar>
                 <xsl:value-of select="'2017'"/>
             </inntektsaar>
+
+
+            <bankOgLaan>
+                <bank>
+                    <konto>
+                        <xsl:for-each select="oppgave">
+                            <bankensNavn>
+                                <tekst>
+                                    <tekst>
+                                        <xsl:value-of
+                                                select="/skatteinfoDokument/data/content/oppgave/oppgavegiver/organisasjonsnavn"/>
+                                    </tekst>
+                                </tekst>
+                            </bankensNavn>
+                        </xsl:for-each>
+                    </konto>
+                </bank>
+            </bankOgLaan>
+
+            <bankOgLaan>
+                <bank>
+                    <konto>
+                        <xsl:for-each select="oppgave">
+                            <bankensNavn><tekst><tekst>
+                                        <xsl:value-of select="/oppgavegiver/organisasjonsnavn"/>
+                            </tekst></tekst></bankensNavn>
+                            <bankensNavn><tekst><tekst>
+                                <xsl:value-of select="/oppgavegiver/organisasjonsnavn"/>
+                            </tekst></tekst></bankensNavn>
+                        </xsl:for-each>
+                    </konto>
+                </bank>
+            </bankOgLaan>
+
+            /skatteinfoDokument/data/content/oppgave/kontonummer = /skattemelding/bankOgLaan/bank/konto/kontonummer
+            /skatteinfoDokument/data/content/oppgave/Innskudd = /skattemelding/bankOgLaan/bank/konto/innskudd/beloep
+
+
             <bankOgLaan>
                 <bank>
                     <xsl:for-each select="oppgave">
@@ -36,13 +74,6 @@ http://www.altova.com/mapforce
                                         <xsl:value-of select="oppgavegiver/organisasjonsnavn"/>
                                     </tekst>
                                 </tekst>
-                                <spraak>
-                                    <xsl:for-each select="oppgavegiver/internasjonalIdentifikator">
-                                        <spraak>
-                                            <xsl:value-of select="utstedtAvLand"/>
-                                        </spraak>
-                                    </xsl:for-each>
-                                </spraak>
                             </bankensNavn>
                             <organisasjonsnummer>
                                 <organisasjonsnummer>
